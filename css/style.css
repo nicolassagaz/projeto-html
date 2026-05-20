@@ -157,3 +157,19 @@ button:hover {
 
     background-color: #fff0f0;
  }
+
+ #contadorObjetivos {
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+    color: #333
+ }
+
+ #pesquisaObjetivo {
+    margin-bottom: 15px;
+ }
+
+ #botaoOrdenar {
+    margin-bottom: 15px;
+ }

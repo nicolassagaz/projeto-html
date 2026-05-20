@@ -11,14 +11,17 @@ O objetivo deste projeto é praticar fundamentos do desenvolvimento frontend uti
 - Estrutura HTML semântica
 - Layout responsivo
 - Flexbox
-- Componentes visuais modernos
 - Manipulação de DOM
 - Adição dinâmica de objetivos
 - Remoção dinâmica de objetivos
+- Pesquisa em tempo real
+- Ordenação alfabética dinâmica
+- Contador automático de objetivos
 - Validação de formulário
 - Feedback visual de erros
 - Alteração dinâmica de estilos
-- Interatividade com JavaScript
+- Persistência de dados com LocalStorage
+- Atualização dinâmica da interface
 
 ---
 
@@ -49,13 +52,19 @@ O objetivo deste projeto é praticar fundamentos do desenvolvimento frontend uti
 ### JavaScript
 - DOM
 - querySelector
+- querySelectorAll
 - Eventos
 - addEventListener
 - createElement
 - appendChild
 - remove
 - classList
+- LocalStorage
+- Arrays
+- sort
+- localeCompare
 - Validação de formulário
+- Estado de aplicação
 
 ---
 
@@ -76,3 +85,32 @@ projeto-html/
 │   └── images/
 │
 └── README.md
+```
+---
+
+## Objetivo profissional
+
+Construir uma base sólida em desenvolvimento frontend para evolução futura em:
+- JavaScript moderno
+- APIs REST
+- Backend com Python
+- Dashboards
+- Sistemas web
+- Projetos para portfólio profissional
+
+---
+
+## Próximos passos
+
+- Consumo de APIs
+- JavaScript moderno
+- Backend com Python
+- Integração frontend/backend
+- Projetos completos
+- Portfólio profissional
+
+---
+
+## Autor
+
+Projeto desenvolvido por Nicolas Sagaz durante sua jornada de transição para desenvolvedor.
