@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="css/style.css">
 </head>
-<script src="js/script.js"></script>
+
 <body>
 
     <header>
@@ -22,15 +22,26 @@
 
     <main class="container">
 
-        <section>
+        <section id="sobre">
+
             <h2>Sobre mim</h2>
+
             <p>
                 Atualmente estudando Git, GitHub, HTML, CSS e JavaScript.
             </p>
-            <button>Saiba mais</button>
+
+            <button id= "botaoMensagem">
+                Clique aqui
+            </button>
+
+            <button id="botaoDestaque">
+                Destacar seção
+            </button>
+            
         </section>
 
         <section>
+
             <h2>Objetivos</h2>
 
             <ul>
@@ -38,7 +49,19 @@
                 <li>Aprender backend com Python</li>
                 <li>Desenvolver sistemas web</li>
             </ul>
-            <button>Saiba mais</button>
+            
+            <input
+                type="text"
+                id="inputObjetivo"
+                placeholder="Digite um novo objetivo"
+            />
+
+            <p id="mensagemErro"></p>
+
+            <button id="botaoAdicionar">
+                Adicionar Objetivo
+            </button>
+
         </section>
     
         </main>
@@ -46,6 +69,8 @@
         <footer>
             <p>Projeto de estudos HTML</p>
         </footer>
-        
+
+<script src="js/script.js"></script>
+
 </body>
 </html>

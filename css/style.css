@@ -94,4 +94,66 @@ button {
 
 button:hover {
     background-color: #00bfff;
+
+    transform: scale(1.05);
 }
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+
+    max-width: 1200px;
+    margin: auto;
+}
+
+.oculto { 
+    display: none;
+}
+
+.destaque {
+    border: 3px solid #00bfff;
+
+    transform: scale(1.02);
+
+    background-color: #f0faff
+}
+ input {
+    width: 100%;
+
+    padding: 10px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+
+    border: 1px solid #ccc;
+
+    box-sizing: border-box;
+ }
+
+ ls {
+    margin-bottom: 10px;
+ }
+
+ li button {
+    margin-left: 10px;
+
+    background-color: crimson;
+ }
+
+ #mensagemErro {
+    color: crimson;
+
+    font-size: 14px;
+
+    margin-top: 5px;
+    margin-bottom: 10px;
+ }
+
+ .erroInput {
+    border: 2px solid crimson;
+
+    background-color: #fff0f0;
+ }
