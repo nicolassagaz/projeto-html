@@ -8,20 +8,29 @@ O objetivo deste projeto é praticar fundamentos do desenvolvimento frontend uti
 
 ## Funcionalidades
 
+### Interface
 - Estrutura HTML semântica
 - Layout responsivo
 - Flexbox
-- Manipulação de DOM
+- Dark Mode
+- Animações e transições suaves
+- Modal visual de confirmação
+
+### Manipulação de DOM
 - Adição dinâmica de objetivos
 - Remoção dinâmica de objetivos
+- Contador automático de objetivos
 - Pesquisa em tempo real
 - Ordenação alfabética dinâmica
-- Contador automático de objetivos
-- Validação de formulário
-- Feedback visual de erros
-- Alteração dinâmica de estilos
-- Persistência de dados com LocalStorage
-- Atualização dinâmica da interface
+
+### Persistência de dados
+- Salvamento com LocalStorage
+- Restauração automática de objetivos
+- Persistência do tema Dark Mode
+
+### Integrações
+- Consumo de API externa
+- Frases motivacionais dinâmicas
 
 ---
 
@@ -46,8 +55,10 @@ O objetivo deste projeto é praticar fundamentos do desenvolvimento frontend uti
 - Flexbox
 - Responsividade
 - Hover e transições
+- Dark Mode
+- Modal
+- Animações
 - Classes dinâmicas
-- Componentização visual
 
 ### JavaScript
 - DOM
@@ -65,6 +76,10 @@ O objetivo deste projeto é praticar fundamentos do desenvolvimento frontend uti
 - localeCompare
 - Validação de formulário
 - Estado de aplicação
+- Fetch API
+- Async/Await
+- JSON
+- Manipulação dinâmica da interface
 
 ---
 
@@ -96,18 +111,20 @@ Construir uma base sólida em desenvolvimento frontend para evolução futura em
 - Backend com Python
 - Dashboards
 - Sistemas web
+- Aplicações full stack
 - Projetos para portfólio profissional
 
 ---
 
 ## Próximos passos
 
-- Consumo de APIs
+- CRUD completo com API
 - JavaScript moderno
 - Backend com Python
 - Integração frontend/backend
-- Projetos completos
+- Projetos completos para portfólio
 - Portfólio profissional
+- Dashboard administrativo
 
 ---
 

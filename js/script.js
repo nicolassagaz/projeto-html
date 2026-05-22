@@ -1,18 +1,12 @@
 console.log("JavaScript conectado com sucesso!");
 
+// =========================
+// ELEMENTOS DA INTERFACE
+// =========================
+
 const titulo = document.querySelector("h1");
 
 titulo.textContent = "Minha Jornada Frontend";
-
-const botao = document.querySelector("#botaoMensagem");
-
-const secaoSobre = document.querySelector("#sobre");
-
-botao.addEventListener("click", function() {
-
-    secaoSobre.classList.toggle("oculto");
-
-});
 
 const botaoAdicionar = document.querySelector("#botaoAdicionar");
 
@@ -26,20 +20,35 @@ const pesquisaObjetivo = document.querySelector("#pesquisaObjetivo");
 
 const botaoOrdenar = document.querySelector("#botaoOrdenar");
 
+const botaoTema = document.querySelector("#botaoTema");
+
+const modalConfirmacao =
+    document.querySelector("#modalConfirmacao");
+
+const confirmarRemocao =
+    document.querySelector("#confirmarRemocao");
+
+const cancelarRemocao = 
+    document.querySelector("#cancelarRemocao");
+
+const fraseMotivacional =
+    document.querySelector("#fraseMotivacional");
+
+let itemParaRemover = null;
+
 let ordemCrescente = true;
+
+// =========================
+// FUNÇÕES
+// =========================~
 
 function adicionarEventoRemover(botao, item) {
 
     botao.addEventListener("click", function(){
 
-        item.remove();
+        itemParaRemover = item;
 
-        atualizarContador();
-
-        localStorage.setItem(
-            "objetivos",
-            document.querySelector("ul").innerHTML
-        );
+        modalConfirmacao.classList.remove("modalOculto");
     });
 }
 
@@ -52,30 +61,45 @@ function atualizarContador() {
     "Total de objetivos: " + total;
 }
 
+function criarObjetivo(textoObjetivo) {
+
+    const novoItem = document.createElement("li");
+
+    novoItem.textContent = textoObjetivo;
+
+    const botaoRemover =
+        document.createElement("button");
+
+    botaoRemover.textContent = "Remover";
+
+    adicionarEventoRemover(
+        botaoRemover,
+        novoItem
+    );
+
+    novoItem.appendChild(botaoRemover);
+
+    document.querySelector("ul")
+        .appendChild(novoItem);
+
+}
+
+// =========================
+// EVENTOS
+// =========================
+
 botaoAdicionar.addEventListener("click", function() {
 
     if (inputObjetivo.value === "") {
 
         mensagemErro.textContent = "Digite um objetivo antes de adicionar!";
 
-        intputObjetivo.classList.add("erroInput");
+        inputObjetivo.classList.add("erroInput");
 
         return;
     }
 
-    const novoItem = document.createElement("li");
-
-    novoItem.textContent = inputObjetivo.value;
-
-    const botaoRemover = document.createElement("button");
-
-    botaoRemover.textContent = "Remover";
-
-    adicionarEventoRemover(botaoRemover, novoItem);
-
-    novoItem.appendChild(botaoRemover);
-
-    document.querySelector("ul").appendChild(novoItem);
+    criarObjetivo(inputObjetivo.value);
 
     localStorage.setItem("objetivos", document.querySelector("ul").innerHTML);
 
@@ -87,13 +111,9 @@ botaoAdicionar.addEventListener("click", function() {
 
 });
 
-const botaoDestaque = document.querySelector("#botaoDestaque");
-
-botaoDestaque.addEventListener("click", function(){
-
-    secaoSobre.classList.toggle("destaque");
-
-});
+// =========================
+// LOCAL STORAGE
+// =========================
 
 const objetivosSalvos = localStorage.getItem("objetivos");
 
@@ -173,3 +193,69 @@ botaoOrdenar.addEventListener("click", function() {
     ordemCrescente = !ordemCrescente;
 
 });
+
+botaoTema.addEventListener("click", function(){
+
+    document.body.classList.toggle("darkMode");
+
+    const temaEscuroAtivo =
+        document.body.classList.contains("darkMode");
+
+    localStorage.setItem(
+        "darkMode",
+        temaEscuroAtivo
+    );
+});
+
+const temaSalvo = localStorage.getItem("darkMode");
+
+if (temaSalvo === "true") {
+
+    document.body.classList.add("darkMode");
+}
+
+confirmarRemocao.addEventListener("click", function() {
+    if (itemParaRemover) {
+
+        itemParaRemover.remove();
+
+        atualizarContador();
+
+        localStorage.setItem(
+            "objetivos",
+            document.querySelector("ul").innerHTML
+        );
+    }
+
+    modalConfirmacao.classList.add("modalOculto");
+});
+
+cancelarRemocao.addEventListener("click", function() {
+
+    modalConfirmacao.classList.add("modalOculto");
+});
+
+// =========================
+// API EXTERNA
+// =========================
+
+async function carregarFrase() {
+
+    try {
+
+        const resposta = await fetch(
+            "https://dummyjson.com/quotes/random"
+        );
+        const dados = await resposta.json();
+
+        fraseMotivacional.textContent =
+            dados.quote;
+
+    } catch (erro) {
+
+        fraseMotivacional.textContent =
+            "Não foi possível carregar a frase";
+    }
+}
+
+carregarFrase();

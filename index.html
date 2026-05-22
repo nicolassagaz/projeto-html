@@ -12,6 +12,14 @@
 
     <header>
         <h1>Minha transição para desenvolvedor</h1>
+
+        <button id="botaoTema">
+            Alternar Tema
+        </button>
+
+        <p id="fraseMotivacional">
+            Carregando frase...
+        </p>
     </header>
 
     <nav>
@@ -26,17 +34,9 @@
 
             <h2>Sobre mim</h2>
 
-            <p>
+            <p id="textoSobre">
                 Atualmente estudando Git, GitHub, HTML, CSS e JavaScript.
             </p>
-
-            <button id= "botaoMensagem">
-                Clique aqui
-            </button>
-
-            <button id="botaoDestaque">
-                Destacar seção
-            </button>
             
         </section>
 
@@ -83,6 +83,23 @@
         <footer>
             <p>Projeto de estudos HTML</p>
         </footer>
+
+<div id="modalConfirmacao" class="modalOculto">
+
+    <div class="modalConteudo">
+
+        <p>Tem certeza que deseja remover este objetivo?</p>
+
+        <button id="confirmarRemocao">
+            Confirmar
+        </button>
+
+        <button id="cancelarRemocao">
+            Cancelar
+        </button>
+    </div>
+
+</div>
 
 <script src="js/script.js"></script>
 
