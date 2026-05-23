@@ -22,17 +22,15 @@ const botaoOrdenar = document.querySelector("#botaoOrdenar");
 
 const botaoTema = document.querySelector("#botaoTema");
 
-const modalConfirmacao =
-    document.querySelector("#modalConfirmacao");
+const modalConfirmacao = document.querySelector("#modalConfirmacao");
 
-const confirmarRemocao =
-    document.querySelector("#confirmarRemocao");
+const confirmarRemocao = document.querySelector("#confirmarRemocao");
 
-const cancelarRemocao = 
-    document.querySelector("#cancelarRemocao");
+const cancelarRemocao = document.querySelector("#cancelarRemocao");
 
-const fraseMotivacional =
-    document.querySelector("#fraseMotivacional");
+const fraseMotivacional = document.querySelector("#fraseMotivacional");
+
+const mensagemVazia = document.querySelector("#mensagemVazia");
 
 let itemParaRemover = null;
 
@@ -57,15 +55,69 @@ atualizarContador();
 function atualizarContador() {
     const total = document.querySelectorAll("ul li").length;
 
-    contadorObjetivos.textContent =
-    "Total de objetivos: " + total;
+    if (total === 0) {
+
+        mensagemVazia.style.display = "block";
+    } else {
+        mensagemVazia.style.display = "none";
+    }
+
+    contadorObjetivos.textContent = "Total de objetivos: " + total;
+}
+
+function salvarObjetivos() {
+
+    localStorage.setItem("objetivos", document.querySelector("ul").innerHTML);
+}
+
+function carregarObjetivos() {
+
+    const objetivosSalvos = localStorage.getItem("objetivos");
+
+    if(objetivosSalvos) {
+
+        document.querySelector("ul").innerHTML = objetivosSalvos;
+    }
+
+    const botoesRemover = document.querySelectorAll("li button");
+
+    botoesRemover.forEach(function(botao){
+
+        const item = botao.parentElement;
+
+        adicionarEventoRemover(botao, item);
+    });
 }
 
 function criarObjetivo(textoObjetivo) {
 
     const novoItem = document.createElement("li");
 
+    novoItem.classList.add("animarEntrada");
+
     novoItem.textContent = textoObjetivo;
+
+    const botaoEditar =
+        document.createElement("button");
+
+    botaoEditar.textContent = "Editar";
+
+    botaoEditar.addEventListener("click", function() {
+
+        const novoTexto = prompt(
+            "Editar objetivo:",
+            textoObjetivo
+        );
+
+        if (novoTexto !== null && novoTexto !== "") {
+
+            novoItem.firstChild.textContent = novoTexto;
+
+            salvarObjetivos();
+
+        }
+
+    });
 
     const botaoRemover =
         document.createElement("button");
@@ -76,6 +128,8 @@ function criarObjetivo(textoObjetivo) {
         botaoRemover,
         novoItem
     );
+
+    novoItem.appendChild(botaoEditar);
 
     novoItem.appendChild(botaoRemover);
 
@@ -101,7 +155,7 @@ botaoAdicionar.addEventListener("click", function() {
 
     criarObjetivo(inputObjetivo.value);
 
-    localStorage.setItem("objetivos", document.querySelector("ul").innerHTML);
+    salvarObjetivos();
 
     inputObjetivo.value = ""; 
 
@@ -111,40 +165,32 @@ botaoAdicionar.addEventListener("click", function() {
 
 });
 
+inputObjetivo.addEventListener("keydown", function(evento) {
+    
+    if (evento.key === "Enter") {
+
+        botaoAdicionar.click();
+
+    }
+});
+
 // =========================
 // LOCAL STORAGE
 // =========================
 
-const objetivosSalvos = localStorage.getItem("objetivos");
-
-if (objetivosSalvos) {
-
-    document.querySelector("ul").innerHTML = objetivosSalvos;
-}
-
-const botoesRemover = document.querySelectorAll("li button");
-
-botoesRemover.forEach(function(botao) {
-
-    const item = botao.parentElement;
-
-    adicionarEventoRemover(botao, item);
-});
+carregarObjetivos();
 
 atualizarContador();
 
 pesquisaObjetivo.addEventListener("input", function(){
 
-    const textoPesquisa =
-        pesquisaObjetivo.value.toLowerCase();
+    const textoPesquisa = pesquisaObjetivo.value.toLowerCase();
 
-    const itensLista =
-        document.querySelectorAll("ul li");
+    const itensLista = document.querySelectorAll("ul li");
 
     itensLista.forEach(function(item) {
 
-        const textoItem =
-            item.textContent.toLowerCase();
+        const textoItem = item.textContent.toLowerCase();
 
         if (textoItem.includes(textoPesquisa)) {
 
@@ -162,8 +208,7 @@ botaoOrdenar.addEventListener("click", function() {
 
     const lista = document.querySelector("ul");
 
-    const itens =
-        Array.from(document.querySelectorAll("ul li"));
+    const itens = Array.from(document.querySelectorAll("ul li"));
 
     itens.sort(function(a, b) {
 
@@ -185,10 +230,7 @@ botaoOrdenar.addEventListener("click", function() {
         
     });
 
-    localStorage.setItem(
-        "objetivos",
-        lista.innerHTML
-    );
+    salvarObjetivos();
 
     ordemCrescente = !ordemCrescente;
 
@@ -198,8 +240,7 @@ botaoTema.addEventListener("click", function(){
 
     document.body.classList.toggle("darkMode");
 
-    const temaEscuroAtivo =
-        document.body.classList.contains("darkMode");
+    const temaEscuroAtivo = document.body.classList.contains("darkMode");
 
     localStorage.setItem(
         "darkMode",
@@ -221,10 +262,7 @@ confirmarRemocao.addEventListener("click", function() {
 
         atualizarContador();
 
-        localStorage.setItem(
-            "objetivos",
-            document.querySelector("ul").innerHTML
-        );
+        salvarObjetivos();
     }
 
     modalConfirmacao.classList.add("modalOculto");
@@ -243,13 +281,10 @@ async function carregarFrase() {
 
     try {
 
-        const resposta = await fetch(
-            "https://dummyjson.com/quotes/random"
-        );
+        const resposta = await fetch("https://dummyjson.com/quotes/random");
         const dados = await resposta.json();
 
-        fraseMotivacional.textContent =
-            dados.quote;
+        fraseMotivacional.textContent = dados.quote;
 
     } catch (erro) {
 

@@ -87,7 +87,7 @@ button {
 
     border: none;
 
-    padding: 10px 20px;
+    padding:10px 20px;
 
     border-radius: 5px;
 
@@ -247,4 +247,40 @@ button:hover {
     margin-top: 15px;
 
     font-style: italic;
+}
+
+li {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+
+    gap: 10px
+}
+
+li button {
+    flex-shrink: 0px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.animarEntrada {
+    animation: aparecerItem 0.4s ease;
+}
+
+@keyframes aparecerItem {
+    from {
+        opacity: 0;
+        transform: translateY(10px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

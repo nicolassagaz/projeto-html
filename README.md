@@ -22,6 +22,10 @@ O objetivo deste projeto é praticar fundamentos do desenvolvimento frontend uti
 - Contador automático de objetivos
 - Pesquisa em tempo real
 - Ordenação alfabética dinâmica
+- Edição dinâmica de objetivos
+- Adição de objetivos com tecla Enter
+- Empty state para lista vazia
+- Feedback visual com animações
 
 ### Persistência de dados
 - Salvamento com LocalStorage
@@ -80,6 +84,12 @@ O objetivo deste projeto é praticar fundamentos do desenvolvimento frontend uti
 - Async/Await
 - JSON
 - Manipulação dinâmica da interface
+- keydown
+- Eventos de teclado
+- Funções reutilizáveis
+- Arquitetura modular básica
+- Empty states
+- Microinterações
 
 ---
 
@@ -118,13 +128,15 @@ Construir uma base sólida em desenvolvimento frontend para evolução futura em
 
 ## Próximos passos
 
-- CRUD completo com API
-- JavaScript moderno
-- Backend com Python
+## Próximos passos
+
 - Integração frontend/backend
-- Projetos completos para portfólio
-- Portfólio profissional
+- CRUD completo com API
+- Backend com Python
+- Sistema de autenticação
 - Dashboard administrativo
+- Componentização frontend
+- Projetos completos para portfólio
 
 ---
 
