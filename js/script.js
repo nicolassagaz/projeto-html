@@ -153,11 +153,28 @@ botaoAdicionar.addEventListener("click", function() {
         return;
     }
 
+    const objetivosExistentes = Array.from(document.querySelectorAll("ul li"));
+
+    const objetivoDuplicado = objetivosExistentes.some(function(item) {
+        return item.firstChild.textContent
+            .toLowerCase()
+            .trim() ===
+            inputObjetivo.value.toLowerCase().trim();
+    });
+
+    if (objetivoDuplicado) {
+        mensagemErro.textContent = "Esse objetivo já existe.";
+        inputObjetivo.classList.add("erroInput");
+        return;
+    }
+
     criarObjetivo(inputObjetivo.value);
 
     salvarObjetivos();
 
-    inputObjetivo.value = ""; 
+    inputObjetivo.value = "";
+    
+    localStorage.removeItem("rascunhoObjetivo");
 
     mensagemErro.textContent = "";
 
@@ -174,11 +191,22 @@ inputObjetivo.addEventListener("keydown", function(evento) {
     }
 });
 
+inputObjetivo.addEventListener("input", function(){
+    localStorage.setItem("rascunhoObjetivo", inputObjetivo.value);
+
+});
+
 // =========================
 // LOCAL STORAGE
 // =========================
 
 carregarObjetivos();
+
+const rascunhoSalvo = localStorage.getItem("rascunhoObjetivo");
+
+if (rascunhoSalvo) {
+    inputObjetivo.value = rascunhoSalvo;
+}
 
 atualizarContador();
 
@@ -274,23 +302,127 @@ cancelarRemocao.addEventListener("click", function() {
 });
 
 // =========================
-// API EXTERNA
+// FRASES MOTIVACIONAIS
 // =========================
 
-async function carregarFrase() {
+const frases = [
+    "Continue evoluindo um passo de cada vez.",
 
-    try {
+    "Consistência supera motivação.",
 
-        const resposta = await fetch("https://dummyjson.com/quotes/random");
-        const dados = await resposta.json();
+    "Projetos pequenos constroem grandes habilidades.",
 
-        fraseMotivacional.textContent = dados.quote;
+    "Cada linha de código é prática para o futuro.",
 
-    } catch (erro) {
+    "Aprender programação é uma maratona, não uma corrida.",
 
-        fraseMotivacional.textContent =
-            "Não foi possível carregar a frase";
+    "Seu portfólio cresce junto com sua experiência.",
+
+    "Errar faz parte do desenvolvimento.",
+
+    "Todo desenvolvedor começou sem saber programar."
+];
+    function carregarFrase(){
+
+        const indiceAleatorio = Math.floor(Math.random()*frases.length);
+
+        fraseMotivacional.textContent = frases[indiceAleatorio];
     }
-}
 
 carregarFrase();
+
+// =========================
+// OBJETOS JS
+// =========================
+
+// =========================
+// OBJETOS JS
+// =========================
+
+const objetivos = [
+
+    {
+        nome: "Aprender JavaScript",
+
+        concluido: false,
+
+        categoria: "Frontend"
+    },
+
+    {
+        nome: "Estudar Python",
+
+        concluido: false,
+
+        categoria: "Backend"
+    },
+
+    {
+        nome: "Criar portfólio",
+
+        concluido: true,
+
+        categoria: "Carreira"
+    }
+
+];
+
+console.log(objetivos);
+
+console.log(objetivos[0]);
+
+console.log(objetivos[1]);
+
+console.log(objetivos[2]);
+
+console.log(objetivos[0].nome);
+
+console.log(objetivos[1].categoria);
+
+console.log(objetivos[2].concluido);
+
+objetivos.forEach(function(objetivo) {
+
+    console.log(
+        objetivo.nome +
+        " | " +
+        objetivo.categoria
+    );
+
+    if (objetivo.concluido) {
+
+        console.log("Objetivo concluído");
+
+    } else {
+
+        console.log("Objetivo pendente");
+
+    }
+
+});
+
+const nomesObjetivos = objetivos.map(function(objetivo) {
+
+    return objetivo.nome;
+
+});
+
+console.log(nomesObjetivos);
+
+const categorias = objetivos.map(function(objetivo) {
+
+    return objetivo.categoria;
+
+});
+
+console.log(categorias);
+
+const frasesObjetivos = objetivos.map(function(objetivo) {
+
+    return objetivo.nome +
+        " pertence à categoria " +
+        objetivo.categoria;
+
+});
+
+console.log(frasesObjetivos);
