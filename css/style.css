@@ -79,13 +79,6 @@ footer {
     padding: 25px;
 }
 
-.container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-
-    flex: 1
-}
 
 @media (max-width: 900px) {
 
