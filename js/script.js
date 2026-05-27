@@ -95,23 +95,23 @@ function criarObjetivo(textoObjetivo) {
 
     novoItem.classList.add("animarEntrada");
 
-    novoItem.textContent = textoObjetivo;
+    const textoItem = document.createElement("span");
 
-    const botaoEditar =
-        document.createElement("button");
+    textoItem.textContent = textoObjetivo;
+
+    novoItem.appendChild(textoItem);
+
+    const botaoEditar = document.createElement("button");
 
     botaoEditar.textContent = "Editar";
 
     botaoEditar.addEventListener("click", function() {
 
-        const novoTexto = prompt(
-            "Editar objetivo:",
-            textoObjetivo
-        );
+        const novoTexto = prompt( "Editar objetivo:", textoObjetivo);
 
         if (novoTexto !== null && novoTexto !== "") {
 
-            novoItem.firstChild.textContent = novoTexto;
+            textoItem.textContent = novoTexto;
 
             salvarObjetivos();
 
@@ -119,22 +119,19 @@ function criarObjetivo(textoObjetivo) {
 
     });
 
-    const botaoRemover =
-        document.createElement("button");
+    const botaoRemover = document.createElement("button");
 
     botaoRemover.textContent = "Remover";
 
-    adicionarEventoRemover(
-        botaoRemover,
-        novoItem
-    );
+    adicionarEventoRemover(botaoRemover, novoItem);
 
     novoItem.appendChild(botaoEditar);
 
     novoItem.appendChild(botaoRemover);
 
-    document.querySelector("ul")
-        .appendChild(novoItem);
+    document.querySelector("ul").appendChild(novoItem);
+
+    atualizarContador();
 
 }
 
@@ -331,9 +328,6 @@ const frases = [
 
 carregarFrase();
 
-// =========================
-// OBJETOS JS
-// =========================
 
 // =========================
 // OBJETOS JS
@@ -401,11 +395,9 @@ objetivos.forEach(function(objetivo) {
 
 });
 
-const nomesObjetivos = objetivos.map(function(objetivo) {
-
-    return objetivo.nome;
-
-});
+const nomesObjetivos = objetivos.map(
+    (objetivo) => objetivo.nome
+);
 
 console.log(nomesObjetivos);
 
@@ -426,3 +418,120 @@ const frasesObjetivos = objetivos.map(function(objetivo) {
 });
 
 console.log(frasesObjetivos);
+
+const objetivosConcluidos = objetivos.filter(
+    (objetivo) => objetivo.concluido === true
+);
+
+console.log(objetivosConcluidos);
+
+const objetivosFrontend = objetivos.filter(function(objetivo) {
+
+    return objetivo.categoria === "Frontend";
+
+});
+
+console.log(objetivosFrontend);
+
+const objetivosPendentes = objetivos.filter(function(objetivo) {
+
+    return objetivo.concluido === false;
+
+});
+
+console.log(objetivosPendentes);
+
+const objetivoPython = objetivos.find(
+    (objetivo) => objetivo.nome === "Estudar Python"
+);
+
+console.log(objetivoPython);
+
+const objetivoConcluido = objetivos.find(function(objetivo) {
+
+    return objetivo.concluido === true;
+
+});
+
+console.log(objetivoConcluido);
+
+const existePython = objetivos.some(
+    (objetivo) =>
+        objetivo.nome.includes("Python")
+);
+
+console.log(existePython);
+
+const existeJava = objetivos.some(
+    (objetivo) =>
+        objetivo.nome.includes("Java")
+);
+
+console.log(existeJava);
+
+const frase = "Aprender JavaScript moderno";
+
+console.log(frase.includes("JavaScript"));
+
+console.log(frase.includes("Python"));
+
+const todosConcluidos = objetivos.every(
+    (objetivo) => objetivo.concluido === true
+);
+
+console.log(todosConcluidos);
+
+const todosFrontend = objetivos.every(
+    (objetivo) => objetivo.categoria === "Frontend"
+);
+
+console.log(todosFrontend);
+
+const numeros = [2, 4, 6, 8];
+
+const todosPares = numeros.every(
+    (numero) => numero % 2 === 0
+);
+
+console.log(todosPares);
+
+const totalObjetivos = objetivos.reduce(
+    (acumulador, objetivo) => {
+
+        return acumulador + 1;
+
+    },
+    0
+);
+
+console.log(totalObjetivos);
+
+const totalConcluidos = objetivos.reduce(
+    (acumulador, objetivo) => {
+
+        if (objetivo.concluido) {
+
+            return acumulador + 1;
+
+        }
+
+        return acumulador;
+
+    },
+    0
+);
+
+console.log(totalConcluidos);
+
+const numerosSoma = [10, 20, 30, 40];
+
+const soma = numerosSoma.reduce(
+    (acumulador, numero) => {
+
+        return acumulador + numero;
+
+    },
+    0
+);
+
+console.log(soma);
