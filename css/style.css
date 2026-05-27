@@ -1,56 +1,82 @@
 body {
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
     margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f4f4f4;
+
+    color: #222;
+
+    transition: 0.3s;
 }
 
 header {
-    background-color: #222;
-    color: white;
-    padding: 20px;
+    background: linear-gradient(
+        135deg,
+        #050505,
+        #101820
+    );
+
     text-align: center;
+
+    padding: 50px 20px;
+
+    border-bottom: 1px solid #1f1f1f;
 }
 
 nav {
-    background-color: #444;
-    padding: 15px;
+    background-color: #2a2a2a;
 
     display: flex;
-    justify-content: center;
-    gap: 20px
 
+    justify-content: center;
+
+    gap: 50px;
+
+    padding: 22px;
+
+    border-bottom: 1px solid #222;
 }
 
 nav a {
     color: white;
+
     text-decoration: none;
-    margin: 10px;
+
+    font-weight: bold;
+
+    font-size: 18px;
 
     transition: 0.3s;
 }
 
 section {
-    background-color: white;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 8px;
+    background: white;
 
-    flex: 1;
+    border: 1px solid #dddddd;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+
+    padding: 30px;
+
+    width: 420px;
+
+    min-height: 500px;
+
+    box-shadow:
+        0 0 12px rgba(0, 191, 255, 0.08);
 
     transition: 0.3s;
 }
 
-section:hover {
-    transform: translateY(-5px);
-}
-
 footer {
-    background-color: #222;
+    background-color: #1f1f1f;
+
     color: white;
+
     text-align: center;
-    padding: 15px;
+
+    padding: 25px;
 }
 
 .container {
@@ -61,47 +87,44 @@ footer {
     flex: 1
 }
 
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
+@media (max-width: 900px) {
 
-    nav {
+    main {
         flex-direction: column;
+
         align-items: center;
     }
+
+    section {
+        width: 90%;
+    }
 }
 
-nav a:hover {
-    color: #00bfff;
-    
-}
-
-section:hover {
-    transform: translateY(-5px);
-}
 
 button {
-    background-color:#222;
+    background: #222;
+
     color: white;
 
     border: none;
 
-    padding:10px 20px;
+    border-radius: 10px;
 
-    border-radius: 5px;
+    padding: 12px 18px;
 
     cursor: pointer;
 
+    font-weight: bold;
+
     transition: 0.3s;
+
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #00bfff;
+    background: #0077ff;
 
-    transform: scale(1.05);
-
-    opacity: 0.9;
+    transform: scale(1.03);
 }
 
 .container {
@@ -113,20 +136,27 @@ button:hover {
     margin: auto;
 }
 
- input {
+input {
     width: 100%;
 
-    padding: 10px;
+    padding: 12px;
 
-    margin-top: 10px;
-    margin-bottom: 10px;
+    background-color: white;
 
-    border-radius: 5px;
+    color: #222;
+
+    border-radius: 8px;
 
     border: 1px solid #ccc;
 
+    margin-top: 10px;
+
+    margin-bottom: 15px;
+
     box-sizing: border-box;
- }
+
+    transition: 0.3s;
+}
 
  ls {
     margin-bottom: 10px;
@@ -169,30 +199,7 @@ button:hover {
     margin-bottom: 15px;
  }
 
- .darkMode {
-    background-color: #2d2d2d;
 
-    color: white;
- }
-
- .darkMode p,
- .darkMode li,
- .darkMode h2,
- .darkMode #contadorObjetivos {
-    color: black;
- }
-
- .darkMode li button {
-    color: white;
- }
-
- .darkMode input {
-    background-color: #3a3a3a;
-
-    color: white;
-
-    border: 1px solid #666;
- }
 
  .modalOculto {
     display: none !important;
@@ -256,7 +263,7 @@ li {
 
     align-items: center;
 
-    margin-bottom: 10px;
+    margin-bottom: 18px;
 
     gap: 10px
 }
@@ -283,4 +290,185 @@ ul {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+#fraseMotivacional {
+    margin-top: 25px;
+
+    font-style: italic;
+
+    color: #d6d6d6;
+
+    font-size: 22px;
+}
+
+nav a:hover {
+    color: #00bfff;
+}
+
+section:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 0 22px rgba(0, 191, 255, 0.18);
+}
+
+button:hover {
+    background-color: #00bfff;
+
+    transform: scale(1.03);
+}
+
+input:focus {
+    outline: none;
+
+    border-color: #00bfff;
+
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
+}
+
+
+/* =========================
+   DARK MODE PROFISSIONAL
+========================= */
+
+.darkMode {
+    background: #0d0d0d;
+
+    color: #f4f4f4;
+}
+
+.darkMode header {
+    background: linear-gradient(
+        135deg,
+        #050505,
+        #101820
+    );
+}
+
+.darkMode nav {
+    background-color: #101010;
+
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.darkMode footer {
+    background: #080808;
+
+    border-top: 1px solid #1f1f1f;
+}
+
+.darkMode section {
+    background: #161616;
+
+    border: 1px solid #262626;
+
+    color: #f4f4f4;
+
+    box-shadow:
+        0 0 18px rgba(0, 191, 255, 0.08);
+}
+
+.darkMode section h2,
+.darkMode section p,
+.darkMode li,
+.darkMode #contadorObjetivos {
+    color: #f4f4f4;
+}
+
+.darkMode input {
+    background-color: #202020;
+
+    color: white;
+
+    border: 1px solid #404040;
+}
+
+.darkMode input::placeholder {
+    color: #bdbdbd;
+}
+
+.darkMode input:focus {
+    border-color: #00bfff;
+
+    box-shadow:
+        0 0 10px rgba(0, 191, 255, 0.3);
+}
+
+.darkMode button {
+    background: #2a2a2a;
+
+    color: white;
+}
+
+.darkMode button:hover {
+    background: #0077ff;
+}
+
+.darkMode nav a {
+    color: #f4f4f4;
+}
+
+.darkMode nav a:hover {
+    color: #00bfff;
+}
+
+.darkMode #fraseMotivacional {
+    color: #d6d6d6;
+}
+
+h1 {
+    font-size: 48px;
+
+    margin-bottom: 25px;
+
+    color: white;
+}
+
+main {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    padding: 50px;
+
+    flex-wrap: wrap;
+}
+
+section h2 {
+    font-size: 42px;
+
+    margin-bottom: 25px;
+
+    color: #111;
+}
+
+section p,
+li,
+#contadorObjetivos {
+    color: #222;
+
+    line-height: 1.7;
+}
+
+li button:last-child {
+    background-color: #c62828;
+}
+
+li button:last-child:hover {
+    background-color: #ff3b3b;
+}
+
+footer {
+    background: #080808;
+
+    text-align: center;
+
+    padding: 28px;
+
+    border-top: 1px solid #1f1f1f;
+
+    margin-top: 40px;
 }

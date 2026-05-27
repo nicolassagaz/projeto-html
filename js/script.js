@@ -535,3 +535,88 @@ const soma = numerosSoma.reduce(
 );
 
 console.log(soma);
+
+const objetivoReact = {
+
+    nome: "Aprender React",
+
+    categoria: "Frontend",
+
+    concluido: false
+
+};
+
+const { nome, categoria, concluido } = objetivoReact;
+
+console.log(nome);
+
+console.log(categoria);
+
+console.log(concluido);
+
+objetivos.forEach((objetivo) => {
+
+    const { nome, categoria } = objetivo;
+
+    console.log(nome + " | " + categoria);
+
+});
+
+objetivos.forEach(({ nome, categoria }) => {
+
+    console.log(nome + " pertence a " + categoria);
+
+});
+
+const tecnologiasFrontend = [
+    "HTML",
+    "CSS",
+    "JavaScript"
+];
+
+const tecnologiasComReact = [
+    ...tecnologiasFrontend,
+    "React"
+];
+
+console.log(tecnologiasComReact);
+
+const backend = [
+    "Python",
+    "Node.js"
+];
+
+const stackCompleta = [
+    ...tecnologiasFrontend,
+    ...backend
+];
+
+console.log(stackCompleta);
+
+const usuario = {
+
+    nome: "Nicolas",
+
+    area: "Frontend"
+
+};
+
+const usuarioAtualizado = {
+
+    ...usuario,
+
+    experiencia: "Júnior"
+
+};
+
+console.log(usuarioAtualizado);
+
+const usuarioSenior = {
+
+    ...usuarioAtualizado,
+
+    experiencia: "Senior"
+
+};
+
+console.log(usuarioSenior);
