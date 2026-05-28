@@ -32,48 +32,16 @@ const fraseMotivacional = document.querySelector("#fraseMotivacional");
 
 const mensagemVazia = document.querySelector("#mensagemVazia");
 
-let itemParaRemover = null;
-
 let ordemCrescente = true;
 
 // =========================
 // FUNÇÕES
 // =========================~
 
-function adicionarEventoRemover(botao, item) {
-
-    botao.addEventListener("click", function(){
-
-        itemParaRemover = item;
-
-        modalConfirmacao.classList.remove("modalOculto");
-    });
-}
-
-atualizarContador();
-
-function atualizarContador() {
-    const total = document.querySelectorAll("ul li").length;
-
-    if (total === 0) {
-
-        mensagemVazia.style.display = "block";
-    } else {
-        mensagemVazia.style.display = "none";
-    }
-
-    contadorObjetivos.textContent = "Total de objetivos: " + total;
-}
-
-function salvarObjetivos() {
-
-    localStorage.setItem("objetivos", document.querySelector("ul").innerHTML);
-}
 
 function carregarObjetivos() {
 
-    const objetivosSalvos = localStorage.getItem("objetivos");
-
+    const objetivosSalvos = carregarObjetivosSalvos();
     if(objetivosSalvos) {
 
         document.querySelector("ul").innerHTML = objetivosSalvos;
@@ -89,51 +57,7 @@ function carregarObjetivos() {
     });
 }
 
-function criarObjetivo(textoObjetivo) {
 
-    const novoItem = document.createElement("li");
-
-    novoItem.classList.add("animarEntrada");
-
-    const textoItem = document.createElement("span");
-
-    textoItem.textContent = textoObjetivo;
-
-    novoItem.appendChild(textoItem);
-
-    const botaoEditar = document.createElement("button");
-
-    botaoEditar.textContent = "Editar";
-
-    botaoEditar.addEventListener("click", function() {
-
-        const novoTexto = prompt("Editar objetivo:",textoItem.textContent);
-
-        if (novoTexto !== null && novoTexto !== "") {
-
-            textoItem.textContent = novoTexto;
-
-            salvarObjetivos();
-
-        }
-
-    });
-
-    const botaoRemover = document.createElement("button");
-
-    botaoRemover.textContent = "Remover";
-
-    adicionarEventoRemover(botaoRemover, novoItem);
-
-    novoItem.appendChild(botaoEditar);
-
-    novoItem.appendChild(botaoRemover);
-
-    document.querySelector("ul").appendChild(novoItem);
-
-    atualizarContador();
-
-}
 
 // =========================
 // EVENTOS
@@ -167,11 +91,11 @@ botaoAdicionar.addEventListener("click", function() {
 
     criarObjetivo(inputObjetivo.value);
 
-    salvarObjetivos();
+    salvarObjetivos(document.querySelector("ul").innerHTML);
 
     inputObjetivo.value = "";
     
-    localStorage.removeItem("rascunhoObjetivo");
+    removerRascunho();
 
     mensagemErro.textContent = "";
 
@@ -189,8 +113,7 @@ inputObjetivo.addEventListener("keydown", function(evento) {
 });
 
 inputObjetivo.addEventListener("input", function(){
-    localStorage.setItem("rascunhoObjetivo", inputObjetivo.value);
-
+    salvarRascunho(inputObjetivo.value);
 });
 
 // =========================
@@ -199,7 +122,7 @@ inputObjetivo.addEventListener("input", function(){
 
 carregarObjetivos();
 
-const rascunhoSalvo = localStorage.getItem("rascunhoObjetivo");
+const rascunhoSalvo = carregarRascunho();
 
 if (rascunhoSalvo) {
     inputObjetivo.value = rascunhoSalvo;
@@ -255,47 +178,10 @@ botaoOrdenar.addEventListener("click", function() {
         
     });
 
-    salvarObjetivos();
+    salvarObjetivos(document.querySelector("ul").innerHTML);
 
     ordemCrescente = !ordemCrescente;
 
-});
-
-botaoTema.addEventListener("click", function(){
-
-    document.body.classList.toggle("darkMode");
-
-    const temaEscuroAtivo = document.body.classList.contains("darkMode");
-
-    localStorage.setItem(
-        "darkMode",
-        temaEscuroAtivo
-    );
-});
-
-const temaSalvo = localStorage.getItem("darkMode");
-
-if (temaSalvo === "true") {
-
-    document.body.classList.add("darkMode");
-}
-
-confirmarRemocao.addEventListener("click", function() {
-    if (itemParaRemover) {
-
-        itemParaRemover.remove();
-
-        atualizarContador();
-
-        salvarObjetivos();
-    }
-
-    modalConfirmacao.classList.add("modalOculto");
-});
-
-cancelarRemocao.addEventListener("click", function() {
-
-    modalConfirmacao.classList.add("modalOculto");
 });
 
 // =========================
