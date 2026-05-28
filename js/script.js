@@ -16,6 +16,8 @@ const mensagemErro = document.querySelector("#mensagemErro");
 
 const contadorObjetivos = document.querySelector("#contadorObjetivos");
 
+const listaObjetivos = document.querySelector("#listaObjetivos");
+
 const pesquisaObjetivo = document.querySelector("#pesquisaObjetivo");
 
 const botaoOrdenar = document.querySelector("#botaoOrdenar");
@@ -44,7 +46,7 @@ function carregarObjetivos() {
     const objetivosSalvos = carregarObjetivosSalvos();
     if(objetivosSalvos) {
 
-        document.querySelector("ul").innerHTML = objetivosSalvos;
+        listaObjetivos.innerHTML = objetivosSalvos;
     }
 
     const botoesRemover = document.querySelectorAll("li button");
@@ -91,7 +93,7 @@ botaoAdicionar.addEventListener("click", function() {
 
     criarObjetivo(inputObjetivo.value);
 
-    salvarObjetivos(document.querySelector("ul").innerHTML);
+    salvarObjetivos(listaObjetivos.innerHTML);
 
     inputObjetivo.value = "";
     
@@ -154,7 +156,7 @@ pesquisaObjetivo.addEventListener("input", function(){
 
 botaoOrdenar.addEventListener("click", function() {
 
-    const lista = document.querySelector("ul");
+    const lista = listaObjetivos;
 
     const itens = Array.from(document.querySelectorAll("ul li"));
 

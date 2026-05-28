@@ -22,7 +22,7 @@ function criarObjetivo(textoObjetivo) {
 
             textoItem.textContent = novoTexto;
 
-            salvarObjetivos(document.querySelector("ul").innerHTML);
+            salvarObjetivos(listaObjetivos.innerHTML);
 
         }
 
@@ -38,7 +38,7 @@ function criarObjetivo(textoObjetivo) {
 
     novoItem.appendChild(botaoRemover);
 
-    document.querySelector("ul").appendChild(novoItem);
+    listaObjetivos.appendChild(novoItem);
 
     atualizarContador();
 
@@ -47,7 +47,7 @@ function criarObjetivo(textoObjetivo) {
 atualizarContador();
 
 function atualizarContador() {
-    const total = document.querySelectorAll("ul li").length;
+    const total = listaObjetivos.querySelectorAll("li").length;
 
     if (total === 0) {
 

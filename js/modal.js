@@ -20,9 +20,7 @@ function confirmarExclusao() {
 
         atualizarContador();
 
-        salvarObjetivos(
-            document.querySelector("ul").innerHTML
-        );
+        salvarObjetivos(listaObjetivos.innerHTML);
     }
 
     fecharModal();
